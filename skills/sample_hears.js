@@ -43,6 +43,18 @@ module.exports = function(controller) {
 
     });
 
+    controller.hears(['^repo'], 'direct_message,direct_mention', function(bot, message) {
+
+        bot.createConversation(message, function(err, convo) {
+            if (!err) {
+
+                convo.say('You can find my repo at https://github.com/jtomchak/camperbot.git');
+                convo.activate();
+            }
+        });
+
+    });
+
     controller.hears(['^say (.*)','^say'], 'direct_message,direct_mention', function(bot, message) {
         if (message.match[1]) {
 
